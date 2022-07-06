@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 
 class Education extends Component {
   constructor(props) {
@@ -13,13 +13,13 @@ class Education extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange = (i, e) => {
-    let eduValues = [...this.state.eduValues];
+  handleChange(i, e) {
+    let eduValues = this.state.eduValues;
     eduValues[i][e.target.name] = e.target.value;
     this.setState({ eduValues });
   }
 
-  addFormFields = () => {
+  addFormFields () {
     this.setState(({
       eduValues: [...this.state.eduValues, {
         name: "", 
@@ -28,8 +28,14 @@ class Education extends Component {
     }))
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  removeFormFields(i) {
+    let eduValues = this.state.eduValues;
+    eduValues.splice(i, 1);
+    this.setState({ eduValues });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
     alert(JSON.stringify(this.state.eduValues));
   }
 
@@ -39,9 +45,13 @@ class Education extends Component {
         {this.state.eduValues.map((element, index) => (
           <div key={index}>
             <label for="name">School Name:</label><br />
-            <input type="text" id="name" value={element.name || ""} onChange={e => this.handleChange(index, e)} /><br />
+            <input type="text" id="name" defaultValue={element.name || ""} onChange={e => this.handleChange(index, e)} /><br />
             <label for="major">Major:</label><br />
-            <input type="text" id="major" value={element.major || ""} onChange={e => this.handleChange(index, e)} /><br />
+            <input type="text" id="major" defaultValue={element.major || ""} onChange={e => this.handleChange(index, e)} /><br />
+            {
+              index ?
+                <button type="button" onClick={() => this.removeFormFields(index)}>Remove</button> : null
+            }
           </div>
         ))}
         <div>
