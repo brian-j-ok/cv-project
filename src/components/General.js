@@ -16,7 +16,7 @@ class General extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmitTask = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
     this.setState({
       personal: {
@@ -36,7 +36,7 @@ class General extends Component {
         <h1>General Information</h1>
 
         {active ? (
-          <form onSubmit={this.onSubmitTask}>
+          <form onSubmit={this.onSubmit}>
             <label for="fname">First Name:</label><br />
             <input type="text" id="fname" name="fname" value={this.state.fname} onChange={this.handleChange} /><br />
             <label for="lname">Last Name:</label><br />
