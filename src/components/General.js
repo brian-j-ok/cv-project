@@ -16,6 +16,13 @@ class General extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  editFormFields = (e) => {
+    console.log('edit');
+    this.setState({
+      activeForm: true
+    });
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({
@@ -45,6 +52,7 @@ class General extends Component {
             <p>First Name: {this.state.fname}</p>
             <p>Last Name: {this.state.lname}</p>
             <p>Email: {this.state.email}</p>
+            <button type="button" onClick={this.editFormFields}>Edit</button>
           </div>
         )}
       </div>
