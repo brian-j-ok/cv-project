@@ -19,11 +19,6 @@ class General extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({
-      personal: {
-        fname: '',
-        lname: '',
-        email: '',
-      },
       activeForm: false
     });
   }
